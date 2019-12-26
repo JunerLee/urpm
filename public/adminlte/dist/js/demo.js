@@ -38,7 +38,7 @@
   ]
 
   $container.append(
-    '<h5>Customize AdminLTE</h5><hr class="mb-2"/>'
+    '<h5>自定义 AdminLTE</h5><hr class="mb-2"/>'
   )
 
   var $no_border_checkbox = $('<input />', {
@@ -206,7 +206,7 @@
   var $text_sm_brand_container = $('<div />', {'class': 'mb-4'}).append($text_sm_brand_checkbox).append('<span>Brand small text</span>')
   $container.append($text_sm_brand_container)
 
-  $container.append('<h6>Navbar Variants</h6>')
+  $container.append('<h6>导航栏颜色</h6>')
 
   var $navbar_variants        = $('<div />', {
     'class': 'd-flex'
