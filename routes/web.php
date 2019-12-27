@@ -16,3 +16,12 @@ Route::get('/', function () {
 });
 
 Route::get('/index', 'HomeController@index');
+
+
+//menu
+Route::get('/menu', 'MenuController@index');
+Route::post('/menu/add', 'MenuController@add')->name('addMenu');
+Route::get('/menu/getTree', 'MenuController@getTree')->name('getMenuTree');
+
+
+

@@ -3,11 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Backstage | Dashboard</title>
+    <title>@yield('title') | Backstage </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 4.3.1 -->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/bootstrap/css/bootstrap.min.css')}}">
+    <!-- Bootstrap-select 1.13.9 -->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/bootstrap-select/css/bootstrap-select.css')}}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">
+{{--    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">--}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"/>
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
@@ -24,8 +29,19 @@
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.css')}}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/summernote/summernote-bs4.css')}}">
+    <!-- LayUI -->
+    <link rel="stylesheet" href="{{ asset('layui/css/layui.css')}}" />
+
+    @yield('css')
+
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style>
+        .content, .content-header{
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+        }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -37,7 +53,10 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            @yield('content-header')
+            <h1>
+                @yield('content-title')
+                <small>@yield('content-title-small')</small>
+            </h1>
         </section>
 
         <!-- Main content -->
@@ -63,8 +82,12 @@
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
+<!-- 引入jQuery.Form -->
+<script src="{{ asset('jQueryForm/jquery.form.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- Bootstrap-select 1.13.9 -->
+<script src="{{ asset('adminlte/plugins/bootstrap-select/js/bootstrap-select.js')}}"></script>
 <!-- ChartJS -->
 <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->
@@ -89,5 +112,8 @@
 {{--<script src="{{ asset('adminlte/dist/js/pages/dashboard.js')}}"></script>--}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('adminlte/dist/js/demo.js')}}"></script>
+<!-- LayUI -->
+<script src="{{ asset('layui/layui.js')}}"></script>
+@yield('js')
 </body>
 </html>
