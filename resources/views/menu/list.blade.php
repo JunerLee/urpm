@@ -22,7 +22,7 @@
                 </div>
                 <div class="card-body">
                     <form id="addMenuForm" class="form-horizontal" accept-charset="UTF-8">
-                        <div class="box-body">
+                        <div class="card-body">
                             <div class="row form-group">
                                 <label for="parent" class="col-sm-3">上级菜单</label>
                                 <div class="col-sm-8">
@@ -127,15 +127,15 @@
             </div>
         </div>
         <div class="col-md-7">
-            <div class="box">
+            <div class="card">
 
-                <div class="box-header">
+                <div class="card-header">
 
                     <div class="btn-group">
-                        <a class="btn btn-primary menu-tools" data-action="expand-all"><i class="fa fa-plus-square-o"></i>&nbsp;
+                        <a class="btn btn-primary menu-tools" data-action="expand-all"><i class="far fa-plus-square"></i>&nbsp;
                             展开
                         </a>
-                        <a class="btn btn-primary menu-tools" data-action="collapse-all"><i class="fa fa-minus-square-o"></i>
+                        <a class="btn btn-primary menu-tools" data-action="collapse-all"><i class="far fa-minus-square"></i>
                             折叠
                         </a>
                     </div>
@@ -147,7 +147,7 @@
                     </div>
 
                     <div class="btn-group">
-                        <a class="btn btn-warning menu-tree-refresh"><i class="fa fa-refresh"></i>
+                        <a class="btn btn-warning menu-tree-refresh"><i class="fas fa-redo-alt"></i>
                             刷新
                         </a>
                     </div>
@@ -157,31 +157,15 @@
                     </div>
 
                 </div>
-                <!-- /.box-header -->
-                <div class="box-body table-responsive no-padding">
-                    <div class="dd">
+                <div class="card-body table-responsive no-padding">
+                    <div class="dd" id="menu-tree">
                         <ol class="dd-list">
-                            <li class="dd-item" data-id="1">
-                                <div class="dd-handle">Item 1</div>
-                            </li>
-                            <li class="dd-item" data-id="2">
-                                <div class="dd-handle">Item 2</div>
-                            </li>
-                            <li class="dd-item" data-id="3">
-                                <div class="dd-handle">Item 3</div>
-                                <ol class="dd-list">
-                                    <li class="dd-item" data-id="4">
-                                        <div class="dd-handle">Item 4</div>
-                                    </li>
-                                    <li class="dd-item" data-id="5">
-                                        <div class="dd-handle">Item 5</div>
-                                    </li>
-                                </ol>
-                            </li>
+                            @foreach ($menu_list as $menu)
+                                @include('menu.menu', $menu)
+                            @endforeach
                         </ol>
                     </div>
                 </div>
-                <!-- /.box-body -->
             </div>
         </div>
     </div>
@@ -194,7 +178,21 @@
     <script>
         $(document).ready(function(){
 
-            $('.dd').nestable({ /* config options */ });
+            $('#menu-tree').nestable({maxDepth:3});
+            $('.menu-tools').on('click', function(e){
+                var target = $(e.target),
+                    action = target.data('action');
+                if (action === 'expand-all') {
+                    $('.dd').nestable('expandAll');
+                }
+                if (action === 'collapse-all') {
+                    $('.dd').nestable('collapseAll');
+                }
+            });
+
+            $('.menu-tree-refresh').click(function () {
+                location.reload();
+            });
 
             //从后台加载菜单数据
             $.ajax({
@@ -244,83 +242,12 @@
                 $("input[name='icon']").val(icon);
             });
 
-            var areaTreeData = [
-                {
-                    id: 0,
-                    text: 'Parent 1',
-                    href: '#parent1',
-                    tags: ['4'],
-                    nodes: [
-                        {
-                            text: 'Child 1',
-                            href: '#child1',
-                            tags: ['2'],
-                            nodes: [
-                                {
-                                    text: 'Grandchild 1',
-                                    href: '#grandchild1',
-                                    tags: ['0']
-                                },
-                                {
-                                    text: 'Grandchild 2',
-                                    href: '#grandchild2',
-                                    tags: ['0']
-                                }
-                            ]
-                        },
-                        {
-                            text: 'Child 2',
-                            href: '#child2',
-                            tags: ['0']
-                        }
-                    ]
-                },
-                {
-                    text: 'Parent 2',
-                    href: '#parent2',
-                    tags: ['0']
-                },
-                {
-                    text: 'Parent 3',
-                    href: '#parent3',
-                    tags: ['0']
-                },
-                {
-                    text: 'Parent 4',
-                    href: '#parent4',
-                    tags: ['0']
-                },
-                {
-                    text: 'Parent 5',
-                    href: '#parent5'  ,
-                    tags: ['0']
-                }
-            ];
-
             //左侧菜单树
             $("#parent").click(function() {
 
                 $('#menuTree').show();
 
             });
-            {{--$("#parent").click(function() {--}}
-            {{--    var options = {--}}
-            {{--        dataUrl:{--}}
-            {{--            method:'GET',--}}
-            {{--            url: "{{ route('getMenuTree') }}",--}}
-            {{--            dataType: "json",--}}
-            {{--        },--}}
-            {{--        // data : areaTreeData,--}}
-            {{--        expandIcon : "fa fa-plus",--}}
-            {{--        collapseIcon : "fa fa-minus",--}}
-            {{--        onNodeSelected : function(event, data) {--}}
-            {{--            $("#parent").val(data.text);--}}
-            {{--            $("#menuTree").hide();//选中树节点后隐藏树--}}
-            {{--        }--}}
-            {{--    };--}}
-            {{--    $('#menuTree').treeview(options);--}}
-
-            {{--});--}}
 
             //提交新增菜单表单
             $("#submit").click(function () {

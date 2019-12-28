@@ -15,8 +15,8 @@ class MenuController extends Controller
 
     public function index()
     {
-        $this->menuService->getMenuTree();
-        return view('menu.list');
+        $menu_list = $this->menuService->getMenuTree();
+        return view('menu.list',compact('menu_list'));
     }
 
     public function add(Request $request)
