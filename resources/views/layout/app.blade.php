@@ -31,6 +31,10 @@
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/summernote/summernote-bs4.css')}}">
     <!-- LayUI -->
     <link rel="stylesheet" href="{{ asset('layui/css/layui.css')}}" />
+    <!-- Kendo UI -->
+    <link rel="stylesheet" href="{{ asset('kendo/styles/kendo.common.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('kendo/styles/kendo.bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('kendo/styles/kendo.bootstrap.mobile.min.css')}}" />
 
     @yield('css')
 
@@ -86,6 +90,8 @@
 <script src="{{ asset('jQueryForm/jquery.form.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- popper 1.16.0 -->
+<script src="{{ asset('adminlte/plugins/popper/umd/popper.js')}}"></script>
 <!-- Bootstrap-select 1.13.9 -->
 <script src="{{ asset('adminlte/plugins/bootstrap-select/js/bootstrap-select.js')}}"></script>
 <!-- ChartJS -->
@@ -112,6 +118,10 @@
 {{--<script src="{{ asset('adminlte/dist/js/pages/dashboard.js')}}"></script>--}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('adminlte/dist/js/demo.js')}}"></script>
+<!-- Kendo UI -->
+<script src="{{ asset('kendo/js/kendo.all.min.js')}}"></script>
+<script src="{{ asset('kendo/js/kendo.culture.zh-CN.min.js')}}"></script>
+<script src="{{ asset('kendo/js/kendo.messages.zh-CN.min.js')}}"></script>
 <!-- LayUI -->
 <script src="{{ asset('layui/layui.js')}}"></script>
 @yield('js')

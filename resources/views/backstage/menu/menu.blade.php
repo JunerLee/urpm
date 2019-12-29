@@ -4,12 +4,12 @@
             <strong><i class="{{$menu['icon']}}"></i>&nbsp;&nbsp;{{$menu['title']}}</strong>
             <span class="float-right dd-nodrag">
                 <a href="#"><i class="fa fa-edit"></i></a>
-                <a href="#"><i class="fa fa-trash" style="color:darkred"></i></a>
+                <a href="#"><i id="delete_id_{{$menu['id']}}" class="fa fa-trash" style="color:darkred"></i></a>
             </span>
         </div>
         <ol class="dd-list">
             @foreach($menu['nodes'] as $menu)
-                @include('menu.menu', $menu)
+                @include('backstage.menu.menu', $menu)
             @endforeach
         </ol>
     </li>
@@ -19,7 +19,7 @@
             <strong><i class="{{$menu['icon']}}"></i>&nbsp;&nbsp;{{$menu['title']}}</strong>
             <span class="float-right dd-nodrag">
                 <a href="#"><i class="fa fa-edit"></i></a>
-                <a href="#"><i class="fa fa-trash" style="color:darkred"></i></a>
+                <a href="#"><i id="delete_id_{{$menu['id']}}" class="fa fa-trash" style="color:darkred"></i></a>
             </span>
         </div>
     </li>

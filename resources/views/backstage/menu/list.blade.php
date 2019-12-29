@@ -6,12 +6,6 @@
     <link rel="stylesheet" href="{{ asset('nestable/nestable.css')}}">
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/bootstrap-iconpicker/css/bootstrap-iconpicker.css')}}">
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/bootstrap-treeview/css/bootstrap-treeview.min.css')}}">
-
-    {{--    <style>--}}
-{{--        .select2-container .select2-selection--single{--}}
-{{--            height: 32px;--}}
-{{--        }--}}
-{{--    </style>--}}
 @endsection
 @section('content')
     <div class="row">
@@ -26,18 +20,9 @@
                             <div class="row form-group">
                                 <label for="parent" class="col-sm-3">上级菜单</label>
                                 <div class="col-sm-8">
-{{--                                        <select class="selectpicker form-control" data-style="btn-info" style="width: 100%;" id="parent_id" name="parent_id" aria-hidden="true">--}}
-{{--                                            <option value="0">根目录1</option>--}}
-{{--                                            <option value="0">根目录2</option>--}}
-{{--                                            <option value="0">根目录3</option>--}}
-{{--                                            <option value="0">根目录4</option>--}}
-{{--                                            @foreach ($menus as $item)--}}
-{{--                                                <option value="{{  $item['id'] }}">{{ $tab .  $item['title'] }}</option>--}}
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
-                                        <input id="parent_id" type="hidden" name="parent_id" value="">
-                                        <input id="parent"  name="parent" type="text" autocomplete="off" class="form-control"  tabindex="2">
-                                        <div id="menuTree" style="display: none; background-color:white; "></div>
+                                    <input id="parent_id" type="hidden" name="parent_id" value="">
+                                    <input id="parent"  name="parent" type="text" autocomplete="off" class="form-control"  tabindex="2">
+                                    <div id="menuTree" style="display: none; background-color:white; "></div>
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -161,7 +146,7 @@
                     <div class="dd" id="menu-tree">
                         <ol class="dd-list">
                             @foreach ($menu_list as $menu)
-                                @include('menu.menu', $menu)
+                                @include('backstage.menu.menu', $menu)
                             @endforeach
                         </ol>
                     </div>
@@ -169,6 +154,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('js')
@@ -177,6 +163,22 @@
     <script src="{{ asset('/nestable/jquery.nestable.js')}}"></script>
     <script>
         $(document).ready(function(){
+
+            $('.fa-trash').click(function (e) {
+                console.log(e.target.id);
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+                    // layer.tips('Hi，我是tips', '#'+e.target.id,{btn: ['重要','奇葩']});
+
+                    layer.confirm('确定删除？', {
+                        title: "提示",
+                        btn: ['确定','取消'] //按钮
+                    }, function(){
+                        location.reload();
+                        layer.msg('已删除');
+                    });
+                });
+            });
 
             $('#menu-tree').nestable({maxDepth:3});
             $('.menu-tools').on('click', function(e){
