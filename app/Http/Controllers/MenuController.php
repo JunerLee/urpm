@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\MenuService;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class MenuController extends BaseController
 {
     protected $menuService;
     public function __construct(MenuService $menuService)
